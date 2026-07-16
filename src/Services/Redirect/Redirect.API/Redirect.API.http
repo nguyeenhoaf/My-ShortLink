@@ -1,0 +1,6 @@
+@Redirect.API_HostAddress = http://localhost:5137
+
+GET {{Redirect.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
