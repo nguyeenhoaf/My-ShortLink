@@ -57,8 +57,9 @@ services:
     depends_on:
       - redirect-api
       - write-api
-
+    environment:
+      ReverseProxy__Clusters__redirectApiCluster__Destinations__Destination1__Address: "http://redirect-api:8080/"
+      ReverseProxy__Clusters__writeApiCluster__Destinations__Destination1__Address: "http://write-api:8080/"
 volumes:
-  mysql_data:
   mongo_data:
     

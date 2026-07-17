@@ -22,8 +22,8 @@ namespace Redirect.API.Controllers
         {
             try
             {
-                var result = await _useCase.HandleAsync(new Message.Request.GetOriginalUrl(shortCode)   );
-                return Results.Ok(result);
+                var result = await _useCase.HandleAsync(new Message.Request.GetOriginalUrl(shortCode));
+                return Results.Redirect(result.OriginalUrl);
             }
             catch (Exception ex) 
             { 

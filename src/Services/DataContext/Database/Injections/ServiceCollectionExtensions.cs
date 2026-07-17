@@ -29,6 +29,6 @@ public static class ServiceCollectionExtensions
 
     public static void AddRepositoryInfrastructure(this IServiceCollection services)
     {
-        services.AddTransient<IRepositoryBase<LinkDocument>, RepositoryBase<LinkDocument>>();
+        services.AddTransient(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
     }
 }
