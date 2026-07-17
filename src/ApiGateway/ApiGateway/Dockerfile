@@ -1,0 +1,17 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY src/ApiGateway/ApiGateway/ApiGateway.csproj ApiGateway/ApiGateway/
+
+RUN dotnet restore ApiGateway/ApiGateway/ApiGateway.csproj
+
+COPY src/ApiGateway/ApiGateway/ ApiGateway/ApiGateway
+
+WORKDIR /src/ApiGateway/ApiGateway
+RUN dotnet publish -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "ApiGateway.dll"]
