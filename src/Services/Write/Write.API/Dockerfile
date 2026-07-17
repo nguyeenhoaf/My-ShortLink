@@ -5,6 +5,7 @@ COPY src/Services/Write/Write.API/Write.API.csproj Services/Write/Write.API/
 COPY src/Services/Write/Write.Application/Write.Application.csproj Services/Write/Write.Application/
 COPY src/Services/DataContext/Infras.MongoDb/Infras.MongoDb.csproj Services/DataContext/Infras.MongoDb/
 COPY src/Services/DataContext/Infras.Redis/Infras.Redis.csproj Services/DataContext/Infras.Redis/
+COPY src/Services/Common/HealthCheck/HealthCheck.csproj Services/Common/HealthCheck/
 
 RUN dotnet restore Services/Write/Write.API.csproj
 
@@ -14,6 +15,7 @@ COPY src/Services/DataContext/Utility/Utility.csproj Services/DataContext/Utilit
 
 COPY src/Services/Write/ Services/Write/
 COPY src/Services/DataContext/ Services/DataContext/
+COPY src/Services/Common/ Services/Common/
 
 WORKDIR /src/Services/Write/Write.API
 RUN dotnet publish -c Release -o /app/publish

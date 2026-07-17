@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HealthCheck\HealthCheck.csproj" />
     <ProjectReference Include="..\..\DataContext\Caching\Infras.Redis.csproj" />
     <ProjectReference Include="..\..\DataContext\Database\Infras.MongoDb.csproj" />
     <ProjectReference Include="..\Write.Application\Write.Application\Write.Application.csproj" />

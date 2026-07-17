@@ -19,47 +19,47 @@ services:
       - mongo_data:/data/db
    
    # ================= SERVICES =================
-  redirect-api:
-    container_name: redirect-api
-    build:
-      context: ..
-      dockerfile: src/Services/Redirect/Redirect.API/Dockerfile
-    ports:
-      - "5005:8080"
-    depends_on:
-      - mongodb
-      - redis
-    environment:
-      MongoDbSettings__ConnectionString: "mongodb://root:sa@mongodb:27017/mydb?authSource=admin"
-      ConnectionStrings__Redis: "redis:6379"
+  # redirect-api:
+  #   container_name: redirect-api
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Services/Redirect/Redirect.API/Dockerfile
+  #   ports:
+  #     - "5005:8080"
+  #   depends_on:
+  #     - mongodb
+  #     - redis
+  #   environment:
+  #     MongoDbSettings__ConnectionString: "mongodb://root:sa@mongodb:27017/mydb?authSource=admin"
+  #     ConnectionStrings__Redis: "redis:6379"
 
-  write-api:
-    container_name: write-api
-    build:
-      context: ..
-      dockerfile: src/Services/Write/Write.API/Dockerfile
-    ports:
-      - "5006:8080"
-    depends_on:
-      - mongodb
-      - redis
-    environment:
-      MongoDbSettings__ConnectionString: "mongodb://root:sa@mongodb:27017/mydb?authSource=admin"
-      ConnectionStrings__Redis: "redis:6379"
+  # write-api:
+  #   container_name: write-api
+  #   build:
+  #     context: ..
+  #     dockerfile: src/Services/Write/Write.API/Dockerfile
+  #   ports:
+  #     - "5006:8080"
+  #   depends_on:
+  #     - mongodb
+  #     - redis
+  #   environment:
+  #     MongoDbSettings__ConnectionString: "mongodb://root:sa@mongodb:27017/mydb?authSource=admin"
+  #     ConnectionStrings__Redis: "redis:6379"
 
-  api-gateway:
-    container_name: api-gateway
-    build:
-      context: ..
-      dockerfile: src/ApiGateway/ApiGateway/Dockerfile
-    ports:
-      - "5004:8080"
-    depends_on:
-      - redirect-api
-      - write-api
-    environment:
-      ReverseProxy__Clusters__redirectApiCluster__Destinations__Destination1__Address: "http://redirect-api:8080/"
-      ReverseProxy__Clusters__writeApiCluster__Destinations__Destination1__Address: "http://write-api:8080/"
+  # api-gateway:
+  #   container_name: api-gateway
+  #   build:
+  #     context: ..
+  #     dockerfile: src/ApiGateway/ApiGateway/Dockerfile
+  #   ports:
+  #     - "5004:8080"
+  #   depends_on:
+  #     - redirect-api
+  #     - write-api
+  #   environment:
+  #     ReverseProxy__Clusters__redirectApiCluster__Destinations__Destination1__Address: "http://redirect-api:8080/"
+  #     ReverseProxy__Clusters__writeApiCluster__Destinations__Destination1__Address: "http://write-api:8080/"
 volumes:
   mongo_data:
     

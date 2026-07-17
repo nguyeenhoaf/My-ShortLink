@@ -5,6 +5,7 @@ COPY src/Services/Redirect/Redirect.API/Redirect.API.csproj Services/Redirect/Re
 COPY src/Services/Redirect/Redirect.Application/Redirect.Application.csproj Services/Redirect/Redirect.Application/
 COPY src/Services/DataContext/Infras.MongoDb/Infras.MongoDb.csproj Services/DataContext/Infras.MongoDb/
 COPY src/Services/DataContext/Infras.Redis/Infras.Redis.csproj Services/DataContext/Infras.Redis/
+COPY src/Services/Common/HealthCheck/HealthCheck.csproj Services/Common/HealthCheck/
 
 RUN dotnet restore Services/Redirect/Redirect.API.csproj
 
@@ -14,6 +15,7 @@ COPY src/Services/DataContext/Utility/Utility.csproj Services/DataContext/Utilit
 
 COPY src/Services/Redirect/ Services/Redirect/
 COPY src/Services/DataContext/ Services/DataContext/
+COPY src/Services/Common/ Services/Common/
 
 WORKDIR /src/Services/Redirect/Redirect.API
 RUN dotnet publish -c Release -o /app/publish
