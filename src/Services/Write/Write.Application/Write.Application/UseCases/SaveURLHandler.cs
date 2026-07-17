@@ -30,7 +30,6 @@ public class SaveURLHandler : IUseCaseHandler<Message.Request.CreateLink, Messag
             {
                 await _repository.InsertOneAsync(new LinkDocument
                 {
-                    Id = Guid.NewGuid().ToString(),
                     ShortCode = shortCode,
                     OriginalUrl = input.OriginalUrl,
                     CreatedOnUtc = DateTimeOffset.UtcNow

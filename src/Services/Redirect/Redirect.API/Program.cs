@@ -1,4 +1,5 @@
 using Application;
+using Caching;
 using Domain.Messages;
 using Infras.MongoDb.Injections;
 using Infras.Redis.Injections;
@@ -11,8 +12,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMongoDbInfrastructure(builder.Configuration);
-builder.Services.AddRedisInfrastructure(builder.Configuration); 
+builder.Services.AddRedisInfrastructure(builder.Configuration);
 builder.Services.AddRepositoryInfrastructure();
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddScoped<IUseCaseHandler<Message.Request.GetOriginalUrl, Message.Response.OriginalUrlGot>, GetOriginalHandler>();
 
 var app = builder.Build();

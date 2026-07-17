@@ -9,7 +9,7 @@ services:
 
   mongodb:
     container_name: mongodb
-    image: mongo:4.4
+    image: mongo
     ports:
       - "37010:27017"
     environment:

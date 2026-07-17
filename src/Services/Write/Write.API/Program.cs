@@ -1,4 +1,5 @@
 using Application;
+using Caching;
 using Database;
 using Domain.Messages;
 using Infras.MongoDb.Injections;
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMongoDbInfrastructure(builder.Configuration);
 builder.Services.AddRedisInfrastructure(builder.Configuration);
 builder.Services.AddRepositoryInfrastructure();
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddScoped<IUseCaseHandler<Message.Request.CreateLink, Message.Response.LinkCreated>, SaveURLHandler>();
 
 var app = builder.Build();
